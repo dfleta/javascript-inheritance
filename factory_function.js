@@ -26,7 +26,7 @@ function range(from, to) {
     // prototype object defined below.  The prototype object is stored as
     // a property of this function, and defines the shared methods (behavior)
     // for all range objects.
-    var r = inherit(range.methods); 
+    var r = inherit(range.methods); // lo crea con Object.create()
 
     // Store the start and end points (state) of this new range object.
     // These are noninherited properties that are unique to this object.
@@ -59,4 +59,23 @@ r.includes(2);           // => true: 2 is in the range
 r.foreach(console.log);  // Prints 1 2 3
 console.log(r);          // Prints (1...3)
 
+// instanceOf y isPrototypeOf permiten chequear si
+// el prototipo especificado esta en la cadena de herencia
+// pero no sirven para obtener la clase del objeto 
 console.log(r instanceof range);
+console.log(range.methods.isPrototypeOf(r));
+console.log(Object.prototype.isPrototypeOf(r));
+
+console.log(r.constructor.toString());
+
+
+// Para acceder al atributo class de un objeto: de manera indirecta con toString
+// instanceOf funciona de facto como el operador para obtener la clase de un objeto
+/**
+ * Objects created through object literals or by Object.create 
+ * have a class attribute of “Object”. If you define your own
+ * constructor function, any objects you create with it 
+ * will have a class attribute of “Object”: 
+ * there is no way to specify the class attribute for your own classes of objects
+ */
+console.log(Object.prototype.toString.call(r).slice(8, -1));
