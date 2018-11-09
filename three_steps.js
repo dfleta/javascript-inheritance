@@ -18,6 +18,12 @@ function Complex(real, imaginary) {
         throw new TypeError();           // Throw an error if they are not.
     this.r = real;                       // The real part of the complex number.
     this.i = imaginary;                  // The imaginary part of the number.
+
+    // objeto mutable en Complex
+    this.representation = {
+        x: this.r,
+        y: this.y,
+    };
 }
 
 
@@ -103,3 +109,45 @@ c.add(d).toString();                    // => "{5,5}": use instance methods
 Complex.parse(c.toString()).            // Convert c to a string and back again,
     add(c.neg()).                       // add its negative to it,
     equals(Complex.ZERO);                // and it will always equal zero
+
+
+/**
+ * Segun lo visto en el carnero, los ejercicos a hacer
+ * deberian demostrar la copia y mutacion de propiedades
+ * del prototipo.
+ */
+
+console.log(c instanceof Complex);
+console.log(d instanceof Complex);
+
+d.r = 10;                   // modificamos copia en la instancia
+console.log(d.r != c.r);    // true
+
+d.i = {                     // sobreescribimos propiedad en la instancia
+    value: 10,
+    symbol: 'i',
+};
+
+console.log(d.i.symbol);    // 'i'
+console.log(c.i.symbol);    // undefined , la propiedad sobreescrita no se propaga al prototipo
+
+d.propia = "numero complejo";
+console.log(d.propia);      
+console.log(c.propia);      // undefined, la propiedad de instancia de d no se propaga al prototipo
+
+console.log(d.representation.x);    // aunque mutemos una propiedad objeto, no se propaga al prototipo 
+d.representation.x = 100;           // no estamos usando Object.create) sino new
+console.log(c.representation.x);
+
+d.action = function() {     // los metodos añadidos en una instancia solo viven en la instancia
+    return "a tope desde la instancia";
+};
+console.log(d.action());
+// console.log(c.action());     // error: action no existe en c
+
+
+Complex.prototype.action = function() {     // creamos dinamicamente un metodo en el prototipo
+    return "a tope desde el prototipo";
+};
+console.log("en d " + d.action());        // prototype chain: vence la propiedad local de d
+console.log("en c " + c.action());        // c tiene el nuevo metodo
