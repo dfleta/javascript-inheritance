@@ -96,18 +96,19 @@ var t = Object.create(r);
 console.log("range.methods es prototipo de s" + range.methods.isPrototypeOf(s));    
              // true, range.methods esta en la cadena de prototipos de s
 console.log("y de t: " + range.methods.isPrototypeOf(t));    // true
-console.log("r es prototipo de s: ", r.isPrototypeOf(s));                // true
+console.log("r es prototipo de s: ", r.isPrototypeOf(s));    // true
 
 // añadir propiedad de manera dinamica en el prototipo inicial
 range.methods.action = function() {
     return "accion en range.methods";
 };
 
-console.log("r hereda action de range.methods: " + r.action());                        // r y s tambien la tienen
+console.log("r hereda action de range.methods: " + r.action());   // r y s tambien la tienen
 console.log("s hereda action de range.methods: " + s.action());
 
 r.step = "integer";         // extendemos dinamicamente r
-console.log("JS encuentra step en la cadena: " + s.step);        // JS encuentra step en r mediante la cadena de prototipos
+// JS encuentra step en r mediante la cadena de prototipos
+console.log("JS encuentra step en la cadena: " + s.step);        
 
 // que sucede al cambiar propiedades en los objetos 
 // que estan más abajo en la cadena de prototipos?

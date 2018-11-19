@@ -13,6 +13,7 @@
 
 // El nombre de la funcion ahora va en mayusculas por convencion
 // Indica al programador/a que esta funcion se invoca con new
+
 function Range(from, to) {
     // Store the start and end points (state) of this new range object.
     // These are noninherited properties that are unique to this object.
@@ -26,11 +27,11 @@ function Range(from, to) {
 // Cuando invocamos a Range() con new automaticamente se usa 
 // Range.prototype como prototipo del nuevo objeto
 
-// Ojo que sobreescribimos el prototipo de Range!!
+// Ojo que sobreescribimos el prototipo de Range!! con un nuevo objeto
 Range.prototype = {
 
     constructor: Range, // para no sobreescribir la propiedad 
-                           // constructor de la funcion Range
+                        // constructor de la funcion Range
     
     // Return true if x is in the range, false otherwise
     // This method works for textual and Date ranges as well as numeric.
@@ -68,7 +69,7 @@ console.log("Propiedad constructor de Range: " + Range.constructor.toString());
 // Si no hemos sobreescrito la propiedad constructor de la funcion Range
 // (pues estamos sobreescribiendo el prototipo de Range)
 // la propiedad constructor de r será Object; sino Range
-console.log("Propiedad constructor de Range: " + r.constructor.toString());
+console.log("Propiedad constructor de r: " + r.constructor.toString());
 
 // Para acceder al atributo class de un objeto: de manera indirecta con toString
 // instanceOf funciona de facto como el operador para obtener la clase de un objeto
