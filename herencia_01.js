@@ -30,16 +30,22 @@ perro.hablar();
 var perrico = new Perro("Marti");
 perrico.hablar();
 
+console.log("perro es instancia de Animal: ", perro instanceof Animal);  
+console.log("perrico es instancia de Animal: ", perrico instanceof Animal);
+console.log("perrico es instancia de Perro: ", perrico instanceof Perro);  
+
 
 /**
- * Una importante diferencia entre las declaraciones de funciones
+ * "Una importante diferencia entre las declaraciones de funciones
  * y las declaraciones de clases es que las declaraciones de funciones
  * son izadas y las declaraciones de clases no lo son. 
  * En primer lugar necesitas declarar tu clase y luego acceder a ella, 
- * de otra modo el ejemplo de código siguiente arrojará un ReferenceError.
+ * de otra modo el ejemplo de código siguiente arrojará un ReferenceError.""
+ * 
+ * https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes
  */
 
- var perraco = new Perraco("McFly");
+ var perrucho = new Perraco("McFly");
 
  class Perraco extends Perro {
 
